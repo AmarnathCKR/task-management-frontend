@@ -10,7 +10,7 @@ function AllPost({active}) {
     useEffect(()=>{
         getAnyApi("user/fetch-allpost",token)
         .then((res)=>{
-            console.log(res);
+          
             if(res.data.load.length === 0){
                 setPost(null);
             }else{

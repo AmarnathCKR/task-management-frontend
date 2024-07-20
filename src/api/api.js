@@ -14,19 +14,34 @@ export const getAnyApi = (link, token) =>
             Authorization: `Bearer ${token}`,
         },
     });
-
-
-
-export const PostAnyApi = (link, input) => API.post(`${link}`, input);
-export const postAnyAuth = (link, input, token) =>
-    API.post(`${link}`,input, {
+export const deleteAnyAuth = (link, token) =>
+    API.delete(`${link}`, {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
     });
 
-    export const uploadImage = (formData) => {
 
-        return axios.post( "https://api.cloudinary.com/v1_1/dqrpxoouq/image/upload", formData)
-    }
+export const putAnyAuth = (link, input, token) =>
+    API.put(`${link}`, input, {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+
+export const PostAnyApi = (link, input) => API.post(`${link}`, input);
+export const postAnyAuth = (link, input, token) =>
+    API.post(`${link}`, input, {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+export const uploadImage = (formData) => {
+
+    return axios.post("https://api.cloudinary.com/v1_1/dqrpxoouq/image/upload", formData)
+}

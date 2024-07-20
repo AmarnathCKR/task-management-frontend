@@ -2,3 +2,241 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.button-container {
+  display: flex;
+  justify-content:center;
+  margin-bottom: 20px;
+}
+
+.button-container button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #3e8e41;
+}
+
+.button-container button:first-child {
+  margin-right: 10px;
+}
+
+
+.task-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.column {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 20px;
+  width: calc(25% - 20px);
+  margin: 10px;
+}
+
+.column h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.task-list {
+  min-height: 200px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.task {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: move;
+}
+
+.task h3 {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.task p {
+  margin-bottom: 0;
+  color: #666;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.task-actions button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.task-actions button:hover {
+  background-color: #3e8e41;
+}
+
+/* Status styles */
+
+.todo {
+  background-color: #ff9999;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.in-progress {
+  background-color: #ffff99;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.done {
+  background-color: #99ff99;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Responsive styles */
+
+@media (max-width: 1200px) {
+ .column {
+    width: calc(33.33% - 20px);
+  }
+}
+
+@media (max-width: 900px) {
+ .column {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+ .column {
+    width: 100%;
+    margin: 10px 0;
+  }
+ .task-board {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+ .task {
+    padding: 10px;
+  }
+ .task h3 {
+    font-size: 16px;
+  }
+ .task p {
+    font-size: 14px;
+  }
+ .task-actions button {
+    font-size: 12px;
+  }
+}
+
+
+  .loader {
+    border-top-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+  }
+  
+  @-webkit-keyframes spinner {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+  .add-column-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: 40px auto;
+  }
+  
+  .add-column-modal h2 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .add-column-modal input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .add-column-modal button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .add-column-modal button:hover {
+    background-color: #3e8e41;
+  }

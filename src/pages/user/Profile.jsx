@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  subscribeUser,
-} from "../../store/index";
+import { subscribeUser } from "../../store/index";
 import PageWrapper from "../../layouts/user/PageWrapper";
 import Swal from "sweetalert2";
 import { postAnyAuth } from "../../api/api";
+import AvatarUpload from "../../components/UI/AvatarUpload/AvatarUpload";
+import { Cloudinary } from "@cloudinary/url-gen/index";
+import ImageUpload from "../../components/UI/ImageUpload";
 const MySwal = Swal;
 
 function Profile() {
@@ -21,7 +22,7 @@ function Profile() {
     obj[param2] = value2;
     postAnyAuth(link, obj, token)
       .then((res) => {
-        console.log(res.data.user);
+
         dispatch(subscribeUser(res.data.user));
         MySwal.fire({
           title: "Success",
@@ -58,6 +59,28 @@ function Profile() {
     });
   };
 
+  const cld = new Cloudinary({
+    cloud: {
+      cloud_name: "dqrpxoouq", //Your cloud name
+      upload_preset: "n0d0jino", //Create an unsigned upload preset and update this
+    },
+  });
+
+  let cloud_name = cld.cloudinaryConfig.cloud.cloud_name;
+  let upload_preset = cld.cloudinaryConfig.cloud.upload_preset;
+
+  const handleImageChange = (data) => {
+
+    postAnyAuth("user/change-image", { image: data }, token).then((res) => {
+
+      const user = { ...userData, image: data };
+      dispatch(subscribeUser(user));
+      localStorage.setItem("user", JSON.stringify(user));
+    });
+  };
+
+
+
   return (
     <PageWrapper>
       <div className="flex flex-col  justify-center text-white align-middle items-center h-max mt-40">
@@ -65,6 +88,17 @@ function Profile() {
           <h1 className="text-white z-10 md:text-3xl text-2xl mx-3 tracking-wide pb-8">
             Profile Page
           </h1>
+          <AvatarUpload
+            ImageUpload={
+              <ImageUpload
+                cloud_name={cld.cloudinaryConfig.cloud.cloud_name}
+                upload_preset={cld.cloudinaryConfig.cloud.upload_preset}
+                onImageUpload={(publicId) => handleImageChange(publicId)}
+              />
+            }
+            defaultImg={userData.image}
+            onImageChange={handleImageChange}
+          />
           <p>Full Name : {userData.name}</p>
           <p>Email : {userData.email}</p>
 

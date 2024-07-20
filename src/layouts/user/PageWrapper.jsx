@@ -57,12 +57,7 @@ function PageWrapper(props) {
             >
               Profile
             </a>
-            <a
-              onClick={()=>navigate("/myfeed")}
-              className="block mt-4 cursor-pointer lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-            >
-              My posts
-            </a>
+           
           </div>
           <div>
             <a

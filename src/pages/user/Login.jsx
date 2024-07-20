@@ -27,7 +27,7 @@ function Login() {
         password: values.password,
       })
         .then((res) => {
-          console.log(res.data.token);
+          
           localStorage.setItem(
             "token",
             res.data.data.content.meta.access_token
@@ -126,12 +126,7 @@ function Login() {
             </button>
           </p>
 
-          <p
-            className="my-4 rounded p-2 cursor-pointer bg-black"
-            onClick={() => navigate("/admin-login")}
-          >
-            Admin Login
-          </p>
+        
         </div>
       </div>
     </>

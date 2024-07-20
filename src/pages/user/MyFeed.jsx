@@ -11,7 +11,7 @@ function MyFeed() {
     useEffect(()=>{
         getAnyApi("user/fetch-mypost",token)
         .then((res)=>{
-            console.log(res);
+
             if(res.data.load.length === 0){
                 setPost(null);
             }else{

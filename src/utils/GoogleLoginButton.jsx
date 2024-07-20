@@ -39,7 +39,7 @@ function GoogleLoginButton(props) {
 
           PostAnyApi("user/login", data)
             .then((res) => {
-              console.log(res.data.token);
+         
               localStorage.setItem("token", res.data.data.content.meta.access_token);
               dispatch(subscribeToken(res.data.data.content.meta.access_token));
               localStorage.setItem("user", JSON.stringify(res.data.data.content.data));

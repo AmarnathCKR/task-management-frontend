@@ -30,7 +30,7 @@ function NewPost({
   const onImageUploadHandler = (publicId) => {
     setValues((state) => ({ ...state, image: publicId }));
   };
-  console.log(values);
+
   const token = useSelector((state) => state.token);
   const handleSubmit = () => {
     postAnyAuth(link, { title: values.title, image: values.image }, token)

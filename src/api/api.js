@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000/api/v1/",
+    baseURL: "https://task-management-backend-e6xy.onrender.com/api/v1/",
 });
 export const getWithoutAuth = (link) =>
     API.get(`${link}`);

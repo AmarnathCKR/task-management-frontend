@@ -9,6 +9,7 @@ import { useFormik } from "formik";
 import { PostAnyApi } from "../../api/api";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import GoogleLoginButton from "../../utils/GoogleLoginButton";
+import { CircleSpinner } from "react-spinners-kit";
 
 function Login() {
   const dispatch = useDispatch();
@@ -27,7 +28,6 @@ function Login() {
         password: values.password,
       })
         .then((res) => {
-          
           localStorage.setItem(
             "token",
             res.data.data.content.meta.access_token
@@ -93,7 +93,16 @@ function Login() {
           <div className="text-center text-red-500 mb-5 tracking-wide font-semibold">
             {error}
           </div>
-
+          {loading && (
+            <div className="z-[999]  p-64 loader-local ">
+              {" "}
+              <CircleSpinner
+                size={50}
+                color="#000000"
+                loading={props.loading}
+              />
+            </div>
+          )}
           <Button
             onClick={formik.handleSubmit}
             class="w-full"
@@ -125,8 +134,6 @@ function Login() {
               Signup now
             </button>
           </p>
-
-        
         </div>
       </div>
     </>

@@ -9,11 +9,13 @@ import Button from "../../components/UI/Button";
 import Swal from "sweetalert2";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import GoogleSignUpButton from "../../utils/GoogleSignUpButton";
+import { CircleSpinner } from "react-spinners-kit";
 const MySwal = Swal;
 
 function SignUp() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -23,12 +25,15 @@ function SignUp() {
     },
     validationSchema: signupSchema,
     onSubmit: (values) => {
+      setLoading(true);
       PostAnyApi("user/signup", {
         email: values.email,
         name: values.name,
         password: values.password,
       })
         .then((res) => {
+          setLoading(false);
+
           MySwal.fire({
             title: "Success",
             text: `You have successfully created an account`,
@@ -37,8 +42,10 @@ function SignUp() {
           navigate("/login");
         })
         .catch((err) => {
-          console.log(err)
-          setError(err.response.data.data.errors[0].message)})
+          console.log(err);
+          setError(err.response.data.data.errors[0].message);
+          setLoading(false);
+        })
         .finally(() => console.log("success"));
     },
   });
@@ -94,6 +101,12 @@ function SignUp() {
         <div className="text-center text-red-500 tracking-wide font-semibold">
           {error}
         </div>
+        {loading && (
+          <div className="z-[999]  p-64 loader-local ">
+            {" "}
+            <CircleSpinner size={50} color="#000000" loading={props.loading} />
+          </div>
+        )}
         <Button
           class="md:mt-10 mt-5 w-full"
           outline
@@ -105,7 +118,11 @@ function SignUp() {
         <p>
           <p className="text-center mb-3 mt-3">or</p>
           <Link to="/login">
-            <GoogleOAuthProvider clientId={"635264642318-284aift53keao63nan68r055p302hmjv.apps.googleusercontent.com"}>
+            <GoogleOAuthProvider
+              clientId={
+                "635264642318-284aift53keao63nan68r055p302hmjv.apps.googleusercontent.com"
+              }
+            >
               <GoogleSignUpButton setError={setError} />
             </GoogleOAuthProvider>
           </Link>
